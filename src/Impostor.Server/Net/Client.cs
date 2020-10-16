@@ -155,7 +155,7 @@ namespace Impostor.Server.Net
                     }
                     else
                     {
-                        Logger.Information("GameData {0}", Encoding.UTF8.GetString(reader.Buffer.Body.Span);
+                        Logger.Information("GameData {0}", Encoding.UTF8.GetString(reader.Buffer.Body.Span));
                         reader.CopyTo(writer);
                         await writer.SendToAllExceptAsync(Id);
                     }
