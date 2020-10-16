@@ -73,6 +73,7 @@ namespace Impostor.Server.Net.State
                                     break;
 
                                 default:
+                                    Logger.Information("unknown rpc? {0} {1}", callId, id);
                                     break;
                             }
                         }
