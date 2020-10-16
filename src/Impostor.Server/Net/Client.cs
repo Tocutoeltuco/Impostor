@@ -149,13 +149,13 @@ namespace Impostor.Server.Net
                     if (flag == MessageFlags.GameDataTo)
                     {
                         var target = reader.ReadPackedInt32();
-                        Logger.Information("GameDataTo {0}: {1}", target, reader.Buffer);
+                        Logger.Information("GameDataTo {0}: {1}", target, Encoding.UTF8.GetString(reader.Buffer.Body.Span));
                         reader.CopyTo(writer);
                         await writer.SendToAsync(target);
                     }
                     else
                     {
-                        Logger.Information("GameData {0}", reader.Buffer);
+                        Logger.Information("GameData {0}", Encoding.UTF8.GetString(reader.Buffer.Body.Span);
                         reader.CopyTo(writer);
                         await writer.SendToAllExceptAsync(Id);
                     }
