@@ -60,9 +60,21 @@ namespace Impostor.Server.Net.State
 
                     case GameDataTag.RpcFlag:
                     {
-                        if (_allObjectsFast.TryGetValue(reader.ReadPackedUInt32(), out var obj))
+                        var id = reader.ReadPackedUInt32();
+                        if (_allObjectsFast.TryGetValue(id, out var obj))
                         {
-                            // obj.HandleRpc(reader.ReadByte(), reader);
+                            var callId = reader.ReadByte();
+
+                            switch (callId)
+                            {
+                                case 13:
+                                    var content = reader.ReadString();
+                                    Logger.Information("{0} chat: {1}", id, content);
+                                    break;
+
+                                default:
+                                    break;
+                            }
                         }
 
                         break;
